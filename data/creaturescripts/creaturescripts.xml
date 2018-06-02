@@ -39,8 +39,6 @@
 	<event type="kill" name="killitem" event="script" value="lootkill.lua"/>
     <event type="advance" name="FullHpMana" event="script" value="fullhpmana.lua"/>
 	<event type="advance" name="recompensa" event="script" value="recompensa_level.lua"/>
-		
-	
 	
 	<event type="kill" name="BountyHunter" script="kill.lua"/>
 	
@@ -53,9 +51,9 @@
 	<event type="mailreceive" name="Mail" event="script" value="mail.lua"/>
 	<event type="reportbug" name="SaveReportBug" script="reportbug.lua"/>
    
-        <event type="death" name="teleportmonster" script="tpmonster.lua"/>
-        <event type="login" name="ExpVip" script="vipexp.lua"/>
-        <event type="login" name="AdvEffect" event="script" value="vipeffect.lua"/>
+	<event type="death" name="teleportmonster" script="tpmonster.lua"/>
+	<event type="login" name="ExpVip" script="vipexp.lua"/>
+	<event type="login" name="AdvEffect" event="script" value="vipeffect.lua"/>
 
 	<event type="think" name="Idle" event="script" value="idle.lua"/>
 	<event type="think" name="SkullCheck" event="script" value="skullcheck.lua"/>
@@ -63,14 +61,13 @@
 	<event type="PrepareDeath" name="pvparena" script="pvparena.lua"/>
 	<event type="attack" name="attackguild" script="attackguild.lua"/>
 	<event type="death" name="incendio" script="incendioMonster.lua"/>
-                <event type="statschange" name="CombatDodge" event="script" value="dodgecombat.lua"/>
+	<event type="statschange" name="CombatDodge" event="script" value="dodgecombat.lua"/>
 	<event type="statschange" name="critical" event="script" value="critical.lua"/>
                 
-   <event type="login" name="blesscheck" event="script" value="blesscheck.lua"/>
+	<event type="login" name="blesscheck" event="script" value="blesscheck.lua"/>
     <event type="look" name="fraglook" script="fraglook.lua"/>
     <event type="login" name="expwoe" event="script" value="expwoe.lua"/>
 	<event type="login" name="FimVip" event="script" value="fimvip.lua"/>
-	
  
      <!-- WoE -->
 	<event type="death" name="empe_broken" event="script" value="empe_broken.lua"/>
@@ -79,10 +76,6 @@
 	<event type="login" name="reg_vs_guard" event="script" value="vs_guard.lua"/>
 	<event type="statschange" name="vs_guard" event="script" value="vs_guard.lua"/>
 
-
-
-
-	
 	<!--Addons-->
 	<event type="death" name="teleportmonster2" script="tpmonster2.lua"/> <!-- Jack Sparrow -->
 	<event type="death" name="teleportmonster3" script="tpmonster3.lua"/> <!-- Orochimaru -->
@@ -104,8 +97,7 @@
 	<event type="death" name="teleportmonster19" script="tpmonster19.lua"/> <!-- Robin Hood -->
 	<event type="death" name="teleportmonster20" script="tpmonster20.lua"/> <!-- Belmont's Revenge -->
 	<event type="death" name="teleportmonster21" script="tpmonster21.lua"/> <!-- Gaia -->
-	<event type="death" name="teleportmonster22" script="tpmonster22.lua"/> <!-- Gentleman -->	
-	
+	<event type="death" name="teleportmonster22" script="tpmonster22.lua"/> <!-- Gentleman -->		
 	
 	<!--Arena-->	
 	<event type="death" name="teleportarena1" script="tparena1.lua"/>
@@ -116,4 +108,4 @@
 	<event type="death" name="teleportmonster25" script="tpmonster25.lua"/> <!-- Massive Fire Elemental -->	
 	<event type="death" name="teleportmonster26" script="tpmonster26.lua"/> <!-- Massive Water Elemental -->	
 	
-    </creaturescripts>
+</creaturescripts>

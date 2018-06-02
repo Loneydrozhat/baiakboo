@@ -1,6 +1,3 @@
 <raids>
-<!-- Raids: 
-<raid name="Towers" file="Towers.xml" chance="100" interval2="120" margin="0" /> Each 120 minutes there is a 10% chance that the raid is
-executed... />
--->
+    <announce delay="20" type="event" message="Uma Invasao de Torres, Ocorreu em AlphaCity." />
 </raids>
