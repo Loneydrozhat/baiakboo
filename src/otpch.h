@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ////////////////////////////////////////////////////////////////////////
-
+/*
 #ifdef __OTPCH__
 #error "Precompiled header should be included only once."
 #endif
 
 #define __OTPCH__
-
+*/
 #if defined WINDOWS
 #include <winerror.h>
 #endif
 
 //libxml
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
-#include <libxml/threads.h>
+#include <libxml2/libxml/xmlmemory.h>
+#include <libxml2/libxml/parser.h>
+#include <libxml2/libxml/threads.h>
 
 //boost
 #include <boost/config.hpp>

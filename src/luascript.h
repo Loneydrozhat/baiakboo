@@ -39,6 +39,16 @@ extern "C"
 }
 #endif
 
+#if LUA_VERSION_NUM >= 502
+#ifndef LUA_COMPAT_ALL
+#ifndef LUA_COMPAT_MODULE
+#define luaL_register(L, libname, l) (luaL_newlib(L, l), lua_pushvalue(L, -1), lua_setglobal(L, libname))
+#endif
+#undef lua_equal
+#define lua_equal(L, i1, i2) lua_compare(L, (i1), (i2), LUA_OPEQ)
+#endif
+#endif
+
 #include "database.h"
 #include "position.h"
 
@@ -85,6 +95,7 @@ class CombatArea;
 class Condition;
 
 struct Outfit_t;
+
 class ScriptEnviroment
 {
 	public:
@@ -172,7 +183,7 @@ class ScriptEnviroment
 		typedef std::vector<const LuaVariant*> VariantVector;
 		typedef std::list<Item*> ItemList;
 		typedef std::map<ScriptEnviroment*, ItemList> TempItemListMap;
-
+		
 		typedef std::map<uint32_t, CombatArea*> AreaMap;
 		typedef std::map<uint32_t, Combat*> CombatMap;
 		typedef std::map<uint32_t, Condition*> ConditionMap;
@@ -276,11 +287,14 @@ class LuaInterface
 			assert(m_scriptEnvIndex >= 0 && m_scriptEnvIndex < 21);
 			return &m_scriptEnv[m_scriptEnvIndex];
 		}
-
+		
 		bool pushFunction(int32_t functionId);
 		bool callFunction(uint32_t params);
-		static int32_t handleFunction(lua_State* L);
-
+		static int  luaErrorHandler(lua_State* L);
+		std::string getStackTrace(const std::string& error_desc);
+		//static int32_t handleFunction(lua_State* L);
+		static std::string getString(lua_State* L, int32_t arg);
+		
 		void dumpStack(lua_State* L = NULL);
 
 		//push/pop common structures
@@ -310,6 +324,8 @@ class LuaInterface
 		static void setField(lua_State* L, const char* index, const std::string& val);
 		static void setFieldBool(lua_State* L, const char* index, bool val);
 		static void setFieldFloat(lua_State* L, const char* index, double val);
+
+		static int protectedCall(lua_State* L, int nargs, int nresults);
 
 		static void createTable(lua_State* L, const char* index);
 		static void createTable(lua_State* L, const char* index, int32_t narr, int32_t nrec);
@@ -817,12 +833,23 @@ class LuaInterface
 		//events information
 		struct LuaTimerEvent
 		{
-			int32_t scriptId, function;
+			int32_t scriptId;
+			int32_t function;
 			uint32_t eventId;
 			Npc* npc;
-			std::list<int32_t> parameters;
+			std::list<int32_t> parameters;				
 		};
+/*
+		struct LuaTimerEventDesc {
+			int32_t scriptId = -1;
+			int32_t function = -1;
+			std::list<int32_t> parameters;
+			uint32_t eventId = 0;
 
+			LuaTimerEventDesc() = default;
+			LuaTimerEventDesc(LuaTimerEventDesc&& other) = default;
+		};		
+*/
 		typedef std::map<uint32_t, LuaTimerEvent> LuaTimerEvents;
 		LuaTimerEvents m_timerEvents;
 

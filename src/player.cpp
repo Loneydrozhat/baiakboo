@@ -5099,7 +5099,7 @@ void Player::manageAccount(const std::string &text)
 					}
 				}
 
-				if(msg.str().length() == NULL)
+				if(msg.str().length() == 0)
 					msg << "I don't understand what vocation you would like to be... could you please repeat it?";
 			}
 			else if(checkText(text, "yes") && talkState[12])

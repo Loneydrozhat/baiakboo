@@ -22,7 +22,7 @@
 #include "enums.h"
 #include "const.h"
 
-#include <libxml/parser.h>
+#include <libxml2/libxml/parser.h>
 #include <boost/tokenizer.hpp>
 #include "position.h"
 

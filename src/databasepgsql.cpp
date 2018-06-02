@@ -98,7 +98,7 @@ DBResult* DatabasePgSQL::storeQuery(std::string query)
 	{
 		std::clog << "PQexec(): " << query << ": " << PQresultErrorMessage(res) << std::endl;
 		PQclear(res);
-		return false;
+		return NULL;
 	}
 
 	// everything went fine

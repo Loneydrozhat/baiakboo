@@ -17,8 +17,8 @@
 #include "otpch.h"
 #include "weapons.h"
 
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
+#include <libxml2/libxml/xmlmemory.h>
+#include <libxml2/libxml/parser.h>
 
 #include "game.h"
 #include "configmanager.h"

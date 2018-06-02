@@ -20,7 +20,7 @@
 #include "otsystem.h"
 
 #include "luascript.h"
-#include <libxml/parser.h>
+#include <libxml2/libxml/parser.h>
 
 class Event;
 class BaseEvents

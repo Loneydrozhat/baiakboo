@@ -41,9 +41,9 @@
 
 #include <boost/config.hpp>
 
-#include <openssl/rsa.h>
-#include <openssl/bn.h>
-#include <openssl/err.h>
+#include <openssl-1.0/openssl/rsa.h>
+#include <openssl-1.0/openssl/bn.h>
+#include <openssl-1.0/openssl/err.h>
 
 #include "server.h"
 #ifdef __LOGIN_SERVER__
@@ -608,13 +608,31 @@ ServiceManager* services)
 	#if defined(WINDOWS) && !defined(_CONSOLE)
 	SendMessage(GUI::getInstance()->m_statusBar, WM_SETTEXT, 0, (LPARAM)">> Loading RSA Key");
 	#endif
-	g_RSA = RSA_new();
+		g_RSA = RSA_new();
+/*			
+		g_RSA->p
+		g_RSA->q
+		g_RSA->d
+		g_RSA->n
+		g_RSA->e
 
+	BIGNUM *g_RSAp = NULL;
+	BIGNUM *g_RSAq = NULL;
+	BIGNUM *g_RSAd = NULL;
+	BIGNUM *g_RSAn = NULL;
+	BIGNUM *g_RSAe = NULL;
+
+	BN_dec2bn(&g_RSAp, g_config.getString(ConfigManager::RSA_PRIME1).c_str());
+	BN_dec2bn(&g_RSAq, g_config.getString(ConfigManager::RSA_PRIME2).c_str());
+	BN_dec2bn(&g_RSAd, g_config.getString(ConfigManager::RSA_PRIVATE).c_str());
+	BN_dec2bn(&g_RSAn, g_config.getString(ConfigManager::RSA_MODULUS).c_str());
+	BN_dec2bn(&g_RSAe, g_config.getString(ConfigManager::RSA_PUBLIC).c_str());
+*/
 	BN_dec2bn(&g_RSA->p, g_config.getString(ConfigManager::RSA_PRIME1).c_str());
 	BN_dec2bn(&g_RSA->q, g_config.getString(ConfigManager::RSA_PRIME2).c_str());
 	BN_dec2bn(&g_RSA->d, g_config.getString(ConfigManager::RSA_PRIVATE).c_str());
 	BN_dec2bn(&g_RSA->n, g_config.getString(ConfigManager::RSA_MODULUS).c_str());
-	BN_dec2bn(&g_RSA->e, g_config.getString(ConfigManager::RSA_PUBLIC).c_str());
+	BN_dec2bn(&g_RSA->e, g_config.getString(ConfigManager::RSA_PUBLIC).c_str());	
 
 	// This check will verify keys set in config.lua
 	if(RSA_check_key(g_RSA))
@@ -624,10 +642,25 @@ ServiceManager* services)
 		BN_CTX_start(ctx);
 
 		BIGNUM *r1 = BN_CTX_get(ctx), *r2 = BN_CTX_get(ctx);
+		/*
+		// g_RSA->dmp1
+		// g_RSA->iqmp
+		BIGNUM *g_RSAdmp1 = NULL;
+		BIGNUM *g_RSAdmq1 = NULL;
+		BIGNUM *g_RSAiqmp = NULL;
+
+		BN_mod(g_RSAdmp1, g_RSAd, r1, ctx);
+		BN_mod(g_RSAdmq1, g_RSAd, r2, ctx);
+
+		BN_mod_inverse(g_RSAiqmp, g_RSAq, g_RSAp, ctx);
+		*/
+		// g_RSA->dmp1
+		// g_RSA->iqmp
+
 		BN_mod(g_RSA->dmp1, g_RSA->d, r1, ctx);
 		BN_mod(g_RSA->dmq1, g_RSA->d, r2, ctx);
 
-		BN_mod_inverse(g_RSA->iqmp, g_RSA->q, g_RSA->p, ctx);
+		BN_mod_inverse(g_RSA->iqmp, g_RSA->q, g_RSA->p, ctx);	
 	}
 	else
 	{
@@ -683,8 +716,9 @@ ServiceManager* services)
 
 	DBResult* result;
 	bool duplicated = false;
+	result = db->storeQuery(query.str());
 
-	if(result = db->storeQuery(query.str()))
+	if(result)
 	{
 		do
 		{
@@ -694,7 +728,8 @@ ServiceManager* services)
 				DBResult* result_;
 				DBQuery query_playeritems;
 				query_playeritems << "SELECT `player_id`, `pid`, `sid`, `itemtype`, `count`, `attributes`, `serial` FROM `player_items` WHERE `serial` = " << db->escapeString(serial) << ";";
-				if(result_ = db->storeQuery(query_playeritems.str()))
+				result_ = db->storeQuery(query_playeritems.str());
+				if(result_)
 				{
 					duplicated = true;
 					do
@@ -713,7 +748,8 @@ ServiceManager* services)
 				query_playeritems.clear();
 				DBQuery query_playerdepotitems;
 				query_playerdepotitems << "SELECT `player_id`, `sid`, `pid`, `itemtype`, `count`, `attributes`, `serial` FROM `player_depotitems` WHERE `serial` = " << db->escapeString(serial) << ";";
-				if(result_ = db->storeQuery(query_playerdepotitems.str()))
+				result_ = db->storeQuery(query_playerdepotitems.str());
+				if(result_)
 				{
 					duplicated = true;
 					do
@@ -732,7 +768,8 @@ ServiceManager* services)
 				query_playerdepotitems.clear();
 				DBQuery query_tileitems;
 				query_tileitems << "SELECT `tile_id`, `world_id`, `sid`, `pid`, `itemtype`, `count`, `attributes`, `serial` FROM `tile_items` WHERE `serial` = " << db->escapeString(serial) << ";";
-				if(result_ = db->storeQuery(query_tileitems.str()))
+				result_ = db->storeQuery(query_tileitems.str());
+				if(result_)
 				{
 					duplicated = true;
 					do

@@ -24,7 +24,7 @@
 #include "enums.h"
 
 #include "position.h"
-#include <libxml/parser.h>
+#include <libxml2/libxml/parser.h>
 
 #define ITEMS_SIZE 12660
 #define ITEMS_INCREMENT 500

@@ -37,8 +37,8 @@
 #include "house.h"
 #include "beds.h"
 
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
+#include <libxml2/libxml/xmlmemory.h>
+#include <libxml2/libxml/parser.h>
 
 extern Game g_game;
 extern Spells* g_spells;

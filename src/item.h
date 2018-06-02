@@ -19,8 +19,8 @@
 #define __ITEM__
 #include "otsystem.h"
 
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
+#include <libxml2/libxml/xmlmemory.h>
+#include <libxml2/libxml/parser.h>
 
 #include "thing.h"
 #include "itemattributes.h"

@@ -20,8 +20,8 @@
 #include <iostream>
 #include <iomanip>
 
-#include <openssl/sha.h>
-#include <openssl/md5.h>
+#include <openssl-1.0/openssl/sha.h>
+#include <openssl-1.0/openssl/md5.h>
 
 #include "vocation.h"
 #include "configmanager.h"

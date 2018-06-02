@@ -26,7 +26,7 @@
 #include "connection.h"
 #include "outputmessage.h"
 
-#include <openssl/rsa.h>
+#include <openssl-1.0/openssl/rsa.h>
 extern RSA* g_RSA;
 
 void Protocol::onSendMessage(OutputMessage_ptr msg)

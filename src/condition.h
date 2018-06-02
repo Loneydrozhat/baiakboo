@@ -22,8 +22,8 @@
 #include "const.h"
 #include "enums.h"
 
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
+#include <libxml2/libxml/xmlmemory.h>
+#include <libxml2/libxml/parser.h>
 
 #include "fileloader.h"
 

@@ -18,8 +18,8 @@
 #include "scriptmanager.h"
 
 #include <boost/filesystem.hpp>
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
+#include <libxml2/libxml/xmlmemory.h>
+#include <libxml2/libxml/parser.h>
 
 #include "actions.h"
 #include "movement.h"

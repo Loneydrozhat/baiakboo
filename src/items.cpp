@@ -16,7 +16,7 @@
 ////////////////////////////////////////////////////////////////////////
 #include "otpch.h"
 #include <iostream>
-#include <libxml/xmlmemory.h>
+#include <libxml2/libxml/xmlmemory.h>
 
 #include "items.h"
 #include "condition.h"

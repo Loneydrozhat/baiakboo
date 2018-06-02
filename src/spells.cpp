@@ -16,8 +16,8 @@
 ////////////////////////////////////////////////////////////////////////
 #include "otpch.h"
 #include "const.h"
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
+#include <libxml2/libxml/xmlmemory.h>
+#include <libxml2/libxml/parser.h>
 
 #include "spells.h"
 #include "tools.h"
